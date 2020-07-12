@@ -1,0 +1,61 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Answers {
+  questionId: Float!
+  answer: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  getQuestion: Questions!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Questions {
+  id: Float!
+  question: String!
+  image: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Alternatives {
+  id: Float!
+  questionId: Float!
+  alternative: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  getQuestion: Questions!
+}
+
+type Query {
+  getQuestions: [Questions!]!
+  question(id: Float!): Questions
+  getAnswerFromQuestion(questionId: Float!): Answers!
+  getAlternativesFromQuestion(questionId: Float!): [Alternatives!]!
+}
+
+type Mutation {
+  createQuestion(data: QuestionInput!): Questions!
+  createAnswer(data: AnswerInput!): Answers!
+  createAlternative(data: AlternativeInput!): Alternatives!
+}
+
+input QuestionInput {
+  question: String!
+  image: String!
+}
+
+input AnswerInput {
+  answer: String!
+  questionId: Float!
+}
+
+input AlternativeInput {
+  alternative: String!
+  questionId: Float!
+}
